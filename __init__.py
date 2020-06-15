@@ -11,7 +11,7 @@ import os
 
 from mycroft import MycroftSkill, intent_file_handler
 
-class DuoAnswer(MycroftSkill):
+class GoogleDuo(MycroftSkill):
     def __init__(self):
         MycroftSkill.__init__(self)
 
@@ -147,7 +147,7 @@ class DuoAnswer(MycroftSkill):
 """
 
 def create_skill():
-    return DuoAnswer()
+    return GoogleDuo()
 
 def screenshotocr(filename, x, y, w, h):
     win = Gdk.get_default_root_window()
