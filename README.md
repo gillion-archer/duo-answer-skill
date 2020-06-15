@@ -1,13 +1,13 @@
 # <img src="https://raw.githack.com/FortAwesome/Font-Awesome/master/svgs/solid/phone-square.svg" card_color="#F58819" width="50" height="50" style="vertical-align:bottom"/> Duo Answer
-Responds oto google duo
+Responds to Duo
 
 ## About
-Asnwers or rejects google duo calls
+Answers or rejects Google Duo calls
 
 ## Examples
 * "Answer that"
 * "Take that"
-* "Sdont answer that"
+* "Don't answer that"
 * "Let it go"
 
 ## Credits
