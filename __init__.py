@@ -15,7 +15,7 @@ from mycroft import MycroftSkill, intent_file_handler
 class GoogleDuo(MycroftSkill):
     def __init__(self):
         MycroftSkill.__init__(self)
-        call_active = False
+        self.call_active = False
 
     @intent_file_handler('call.duo.intent')
     def handle_call_duo(self, message):
@@ -41,6 +41,7 @@ class GoogleDuo(MycroftSkill):
             sleep(1.5)
             m.click(470,380) # Click on Video Call button
             self.call_active = True
+            m.move(0,0)
         else:
             response = {'contact': name}
             self.speak_dialog('nocontact.duo', data=response)
@@ -64,7 +65,6 @@ class GoogleDuo(MycroftSkill):
 
     @intent_file_handler('end.duo.intent')
     def handle_end_duo(self, message):
-        #if is_call_active():
         if self.call_active:
             command = "wmctrl -a \"Google Duo\""
             os.system(command)
@@ -88,7 +88,6 @@ def screenshotocr(filename, x, y, w, h):
         image = cv2.imread(filename)
         gray = cv2.cvtColor(image, cv2.COLOR_BGR2GRAY)
 
-#        gray = cv2.medianBlur(gray, 3)
         # write the grayscale image to disk as a temporary file so we can
         # apply OCR to it
         filename = "/tmp/{}.png".format(os.getpid())
@@ -99,29 +98,14 @@ def screenshotocr(filename, x, y, w, h):
         text = pytesseract.image_to_string(Image.open(filename))
         return text
 
-#def is_call_active():
-#    command = "wmctrl -a \"Google Duo\""
-#    os.system(command)
-#    sleep(.1)
-
-#    m = PyMouse()
-#    m.click(350, 350)
-#    sleep(.75)
-
-#    k = screenshotocr("/tmp/screenshot.png", 340, 410, 125, 50)
-#    if(k == "End call"):
-#        return True
-#    else:
-#        return False
-
 def is_call_incoming():
     command = "wmctrl -a \"Google Duo\""
     os.system(command)
     sleep(.25)
-    k = screenshotocr("/tmp/screenshot.png", 280, 95, 250, 25)
+    k = screenshotocr("/tmp/screenshot.png", 280, 95, 250, 50)
 
     if(k == "Duo video call" or k == "Duo voice call"):
-        b = screenshotocr("/tmp/screenshot1.png", 280, 130, 150, 40)
+        b = screenshotocr("/tmp/screenshot1.png", 280, 130, 150, 75)
         return True
         #check if caller is valid contact
         #if b.lower() in contacts:
