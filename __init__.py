@@ -41,7 +41,9 @@ class GoogleDuo(MycroftSkill):
             sleep(1.5)
             m.click(470,380) # Click on Video Call button
             self.call_active = True
-            m.move(0,0)
+            sleep(7)
+            m.click(467,127)
+            m.move(799,479)
         else:
             response = {'contact': name}
             self.speak_dialog('nocontact.duo', data=response)
