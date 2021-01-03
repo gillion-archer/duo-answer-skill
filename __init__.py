@@ -104,7 +104,7 @@ def is_call_incoming():
     command = "wmctrl -a \"Google Duo\""
     os.system(command)
     sleep(.25)
-    return True
+#    return True
     k = screenshotocr("/tmp/screenshot.png", 280, 95, 250, 50)
 
     if(k == "Duo video call" or k == "Duo voice call"):
